@@ -1,23 +1,31 @@
 #!/usr/bin/python3
-"""
-Module 5-island_perimeter
-Returns the perimeter of  the island described in grid
-"""
+"""Module that calculates the perimeter of an island in a grid."""
+
+
+def num_water_neighbors(grid, i, j):
+    """Returns the number of water neighbors a cell has in a grid."""
+
+    num = 0
+
+    if i <= 0 or not grid[i - 1][j]:
+        num += 1
+    if j <= 0 or not grid[i][j - 1]:
+        num += 1
+    if j >= len(grid[i]) - 1 or not grid[i][j + 1]:
+        num += 1
+    if i >= len(grid) - 1 or not grid[i + 1][j]:
+        num += 1
+
+    return num
 
 
 def island_perimeter(grid):
-    """
-    Returns the perimeter of the grid defined by '1'
-    """
-    count, repeat = 0, 0
+    """Returns the perimeter of the island in grid."""
 
+    perim = 0
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            if grid[i][j] == 1:
-                count += 1
-                if i != 0 and grid[i - 1][j] == 1:
-                    repeat += 1
-                if j != 0 and grid[i][j - 1] == 1:
-                    repeat += 1
+            if grid[i][j]:
+                perim += num_water_neighbors(grid, i, j)
 
-    return 4*count - 2*repeat
+    return perim

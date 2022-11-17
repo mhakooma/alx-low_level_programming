@@ -1,24 +1,19 @@
 CC = gcc
-SRC = main.c holberton.c
+SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
-NAME = holberton
+NAME = school
 RM = rm -f
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
-# make all files executable
-all: m.h $(OBJ)
+all : $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-# delete temporary files and executable
-clean:
+clean :
 	$(RM) *~ $(NAME)
 
-# deletes the object files
-oclean:
+oclean :
 	$(RM) $(OBJ)
 
-# deletes tmp files, executable anf object files
-fclean: clean oclean
+fclean : clean oclean
 
-# Forces recompilation of all source files
-re: oclean all
+re : oclean all
